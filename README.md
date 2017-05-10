@@ -3,9 +3,9 @@
 Allows to run ansible with a configuration on your local host using ssh keys and config
  from your localhost, updating any host in your network.
 
-The simplest way to run it is by creating a wrapper script in, for example, $HOME/bin
+The simplest way to run it is by creating a wrapper script like for example,
 
-`ansible-playbook`:
+`$HOME/bin/ansible-playbook`:
 ```
 #!/bin/sh
 docker run -t --rm -v $PWD:/workdir -v $HOME/.ssh:/home/user/.ssh bertbaron/ansible ansible-playbook "$@"
