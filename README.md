@@ -12,7 +12,8 @@ The easiest way to use this image is to add a wrapper script on the PATH, for ex
 `$HOME/bin/ansible-playbook`:
 ```shell
 #!/bin/sh
-docker run -ti --rm -v $PWD:/workdir -v $HOME/.ssh:/home/user/.ssh bertbaron/ansible ansible-playbook "$@"
+docker run -ti --rm -v $PWD:/workdir -v $HOME/.ssh:/home/user/.ssh \
+       bertbaron/ansible ansible-playbook "$@"
 ```
 
 This will mount the current directory under /workdir in the image. The image will start ansible in that
