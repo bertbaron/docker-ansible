@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Runs the specified command in a new docker container created from the image bertbaron/ansible
+#
+# The current working directory and the ~/.ssh folders are mounted. The container will use ownership from the current
+# directory.
+#
+# the variable $EXTRA_DOCKER_OPTS can be used to specify extra arguments for docker run. For example, to use vim as
+# default editor (for ansible-vault for example), use:
+#
+# EXTRA_OPTS="-e EDITOR=/usr/bin/vi"
+#
+set -eu
+
+extra_opts=${EXTRA_DOCKER_OPTS:-""}
+
+# Nice colors when run from a terminal
+[ -t 1 ] && extra_opts="$extra_opts -ti"
+
+rm -f ansible.log
+docker run $extra_opts --rm -v $PWD:/workdir -v $HOME/.ssh:/home/user/.ssh bertbaron/ansible "$@"
