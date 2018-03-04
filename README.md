@@ -38,11 +38,3 @@ the current working directory. Personally I use a simple wrapper script like the
 #!/bin/bash
 time ansible-playbook -i hosts -b --vault-password-file=/home/user/.ssh/.pwd site.yml "$@"
 ```
-
-###
-
-For options for more fine-grained control over user and permissions, see https://github.com/bertbaron/runasme or run:
-
-```shell
-docker run --rm bertbaron/ansible -h
-```
