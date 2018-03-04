@@ -5,7 +5,7 @@
 Allows to run ansible with a configuration on your local host using ssh keys and config
 from your localhost, updating any host in your network.
 
-This image is actually a small wrapper around the image https://hub.docker.com/r/williamyeh/ansible.
+This image is actually a small wrapper around the image [williamyeh/ansible](https://hub.docker.com/r/williamyeh/ansible/).
 
 The reason for yet another ansible image is that I had problems with mounting the local .ssh folder
 (problems with config file permissions, not being able to update `known_hosts` etc.). Therefore I added
