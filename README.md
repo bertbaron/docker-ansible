@@ -1,4 +1,4 @@
-# Ansible Docker container
+### Ansible Docker container
 
 [![](https://images.microbadger.com/badges/version/bertbaron/ansible.svg)](http://microbadger.com/images/bertbaron/ansible "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/bertbaron/ansible.svg)](http://microbadger.com/images/bertbaron/ansible "Get your own image badge on microbadger.com")
 
@@ -12,9 +12,11 @@ The reason for yet another ansible image is that I had problems with mounting th
 the script `runasme` which will create a login-shell like environment in which the command is run, even supporting
 interactive commands like ansible-vault with either nano or vim as defualt editor.
 
+### Setup
+
 The easiest way to use this image is to install the wrapper scripts in a folder in your path. For example:
 
-```shell
+```bash
 docker pull bertbaron/ansible
 docker run -ti --rm -e UID=$(id -u) -e GID=$(id -g) -v ~/bin:/workdir \
 bertbaron/ansible setup
@@ -22,6 +24,22 @@ bertbaron/ansible setup
 
 This will create wrapper scripts for the ansible commands in your local bin folder, which is automatically included in
 your path on most linux distributions (may require a new login when created for the first time).
+
+The scripts run ansible as usual, mounting the current working directory to ```/workdir``` and the ```~/.ssh```
+directory to ```/home/user/.ssh```.
+
+
+### Usage
+
+The scripts can be used as is, but note that you need to specify the hosts file explicitly because the command only sees
+the current working directory. Personally I use a simple wrapper script like the following:
+
+```bash
+#!/bin/bash
+time ansible-playbook -i hosts -b --vault-password-file=/home/user/.ssh/.pwd site.yml "$@"
+```
+
+###
 
 For options for more fine-grained control over user and permissions, see https://github.com/bertbaron/runasme or run:
 
