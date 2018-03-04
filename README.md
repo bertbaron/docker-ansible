@@ -36,5 +36,5 @@ the current working directory. Personally I use a simple wrapper script like the
 
 ```bash
 #!/bin/bash
-time ansible-playbook -i hosts -b --vault-password-file=/home/user/.ssh/.pwd site.yml "$@"
+ansible-playbook -i hosts -b --vault-password-file=/home/user/.ssh/.pwd site.yml "$@"
 ```
