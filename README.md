@@ -15,6 +15,7 @@ interactive commands like ansible-vault with either nano or vim as defualt edito
 The easiest way to use this image is to install the wrapper scripts in a folder in your path. For example:
 
 ```shell
+docker pull bertbaron/ansible
 docker run -ti --rm -e UID=$(id -u) -e GID=$(id -g) -v ~/bin:/workdir \
 bertbaron/ansible setup
 ```
