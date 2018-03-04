@@ -5,6 +5,8 @@
 Allows to run ansible with a configuration on your local host using ssh keys and config
 from your localhost, updating any host in your network.
 
+This image is actually a small wrapper around the image https://hub.docker.com/r/williamyeh/ansible.
+
 The reason for yet another ansible image is that I had problems with mounting the local .ssh folder
 (problems with config file permissions, not being able to update `known_hosts` etc.). Therefore I added
 the script `runasme` which will create a login-shell like environment in which the command is run, even supporting
@@ -18,7 +20,7 @@ bertbaron/ansible setup
 ```
 
 This will create wrapper scripts for the ansible commands in your local bin folder, which is automatically included in
-your path on most linux distributions (may require a new shell when created for the first time)
+your path on most linux distributions (may require a new login when created for the first time).
 
 For options for more fine-grained control over user and permissions, see https://github.com/bertbaron/runasme or run:
 
