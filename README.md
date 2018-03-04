@@ -1,5 +1,7 @@
 # Ansible Docker container
 
+[![](https://images.microbadger.com/badges/version/bertbaron/docker-ansible.svg)](http://microbadger.com/images/bertbaron/docker-ansible "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/bertbaron/docker-ansible.svg)](http://microbadger.com/images/bertbaron/docker-ansible "Get your own image badge on microbadger.com")
+
 Allows to run ansible with a configuration on your local host using ssh keys and config
 from your localhost, updating any host in your network.
 
