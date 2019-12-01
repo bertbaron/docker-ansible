@@ -2,15 +2,18 @@
 
 [![](https://images.microbadger.com/badges/version/bertbaron/ansible.svg)](http://microbadger.com/images/bertbaron/ansible "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/bertbaron/ansible.svg)](http://microbadger.com/images/bertbaron/ansible "Get your own image badge on microbadger.com")
 
+Ansible client container aimed to behave as much as possible as a locally installed ansible.
 Allows to run ansible with a configuration on your local host using ssh keys and config
 from your localhost, updating any host in your network.
 
-This image is actually a small wrapper around the image [williamyeh/ansible](https://hub.docker.com/r/williamyeh/ansible/).
+Why Ansible in a container?
 
-The reason for yet another ansible image is that I had problems with mounting the local .ssh folder
-(problems with config file permissions, not being able to update `known_hosts` etc.). Therefore I added
-the script `runasme` which will create a login-shell like environment in which the command is run, even supporting
-interactive commands like ansible-vault with either nano or vim as defualt editor.
+ * No other local requirements than docker
+ * A fixed ansible version independent from the one that may be provided by the OS package management
+
+Why yet another Ansible container?
+
+ * In contrary to other containers I tried this container allows to use the authorized ssh keys on the host
 
 ### Setup
 
@@ -18,12 +21,11 @@ The easiest way to use this image is to install the wrapper scripts in a folder 
 
 ```bash
 docker pull bertbaron/ansible
-docker run -ti --rm -e UID=$(id -u) -e GID=$(id -g) -v ~/bin:/workdir \
+docker run --rm -v /usr/local/bin:/workdir \
 bertbaron/ansible setup
 ```
 
-This will create wrapper scripts for the ansible commands in your local bin folder, which is automatically included in
-your path on most linux distributions (may require a new login when created for the first time).
+This will create wrapper scripts for the ansible commands in /usr/local/bin.
 
 The scripts run ansible as usual, mounting the current working directory to ```/workdir``` and the ```~/.ssh```
 directory to ```/home/user/.ssh```.
