@@ -24,11 +24,12 @@ docker pull bertbaron/ansible
 docker run --rm -v /usr/local/bin:/workdir bertbaron/ansible setup
 ```
 
-This will create wrapper scripts for the ansible commands in /usr/local/bin.
+This will create wrapper scripts for the ansible commands in /usr/local/bin<sup>1</sup>.
 
 The scripts run ansible as usual, mounting the current working directory to ```/workdir``` and the ```~/.ssh```
 directory to ```/home/user/.ssh```.
 
+<sup>1</sup> You can use any other folder (i.e. $HOME/bin), just make sure the folder is in your path
 
 ### Usage
 
