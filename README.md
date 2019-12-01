@@ -21,8 +21,7 @@ The easiest way to use this image is to install the wrapper scripts in a folder 
 
 ```bash
 docker pull bertbaron/ansible
-docker run --rm -v /usr/local/bin:/workdir \
-bertbaron/ansible setup
+docker run --rm -v /usr/local/bin:/workdir bertbaron/ansible setup
 ```
 
 This will create wrapper scripts for the ansible commands in /usr/local/bin.
