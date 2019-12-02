@@ -6,5 +6,5 @@ docker pull bertbaron/ansible
 docker run --rm -ti -v $(dirname "$0"):/workdir bertbaron/ansible setup
 
 echo "Pulling the latest image for TAG"
-docker pull bertbaron/ansible:TAG
+docker pull -q bertbaron/ansible:TAG
 echo
