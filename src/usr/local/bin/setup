@@ -1,3 +1,26 @@
 #!/bin/sh
-cp /usr/local/wrappers/* /workdir
+set -eu
 
+versions="$(wget -q https://registry.hub.docker.com/v1/repositories/bertbaron/ansible/tags -O - | jq -r '.[] | .name' | grep -v latest | sort -rn | awk '{ print NR, $1 }')"
+
+choice=$(dialog --menu "Choose one:" 10 30 3 $versions 2>&1 >/dev/tty)
+
+if [[ -z "$choice" ]]; then
+  echo "Setup canceled"
+  exit 1
+fi
+
+tag="$(echo "$versions" | grep "^$choice" | sed 's/^[0-9]* //')"
+
+cp /usr/local/wrappers/* /workdir
+sed -i "s/TAG/$tag/" /workdir/ansible-container
+
+echo
+echo "Successfully installed ansible version $tag"
+echo
+echo "run"
+echo
+echo "  ansible --version"
+echo
+echo "to verify the installation"
+echo

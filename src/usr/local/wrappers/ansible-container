@@ -18,4 +18,5 @@ extra_opts=${EXTRA_DOCKER_OPTS:-""}
 [ -t 1 ] && extra_opts="$extra_opts -ti"
 
 rm -f ansible.log
-docker run $extra_opts --rm  -e UID=$(id -u) -e GID=$(id -g) -v $PWD:/workdir -v $HOME/.ssh:/home/user/.ssh bertbaron/ansible "$@"
+
+docker run $extra_opts --rm  -e UID=$(id -u) -e GID=$(id -g) -v $PWD:/workdir -v $HOME/.ssh:/home/user/.ssh bertbaron/ansible:TAG "$@"
