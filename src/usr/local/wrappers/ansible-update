@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo CURRENT_VERSION=TAG
+export CURRENT_VERSION=TAG
 
 docker pull bertbaron/ansible
 docker run --rm -ti -v $(dirname "$0"):/workdir bertbaron/ansible setup
