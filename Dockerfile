@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 RUN apk add --no-cache sudo openssl ca-certificates nano jq dialog
 RUN apk add --no-cache ansible

@@ -13,7 +13,7 @@ fi
 tag="$(echo "$versions" | grep "^$choice" | sed 's/^[0-9]* //')"
 
 cp /usr/local/wrappers/* /workdir
-sed -i "s/TAG/$tag/" /workdir/ansible-container
+sed -i "s/TAG/$tag/" /workdir/ansible-container /workdir/ansible-update
 
 echo
 echo "Successfully installed ansible version $tag"
