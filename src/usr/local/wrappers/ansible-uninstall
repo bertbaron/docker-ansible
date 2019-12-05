@@ -2,6 +2,7 @@
 rm "$(dirname "$0")/ansible"
 rm "$(dirname "$0")/ansible-container"
 rm "$(dirname "$0")/ansible-playbook"
+rm "$(dirname "$0")/ansible-galaxy"
 rm "$(dirname "$0")/ansible-vault"
 rm "$(dirname "$0")/ansible-update"
 rm "$(dirname "$0")/ansible-uninstall"

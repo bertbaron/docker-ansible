@@ -1,9 +1,14 @@
-FROM alpine:3.10
+FROM alpine:3.10.3
 
 RUN apk add --no-cache sudo openssl ca-certificates nano jq dialog
-RUN apk add --no-cache ansible
 
-RUN pip3 install 'paramiko>=2.5.0' # see https://github.com/ansible/ansible/issues/52598
+RUN apk add --no-cache python3
+RUN apk add --virtual dev --no-cache python3-dev build-base libffi-dev openssl-dev \
+    && pip3 install --no-cache-dir ansible==2.9.2 \
+    && apk del dev
+
+# Paramiko gives issues, so for now use native ssh
+RUN apk add --no-cache openssh
 
 ENV EDITOR=/usr/bin/nano
 ADD src /
@@ -15,3 +20,4 @@ RUN chmod +x /runasme
 
 ENTRYPOINT ["/runasme"]
 CMD [ "ansible-playbook", "--version" ]
+
