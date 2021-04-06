@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -eu
 
 versions="$(wget -q https://registry.hub.docker.com/v1/repositories/bertbaron/ansible/tags -O - | jq -r '.[] | .name' | grep -v latest | sort -rn | awk '{ print NR, $1 }')"
