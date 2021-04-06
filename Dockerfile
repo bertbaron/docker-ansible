@@ -1,14 +1,10 @@
-FROM alpine:3.10.3
+FROM debian:stretch-slim
 
-RUN apk add --no-cache sudo openssl ca-certificates nano jq dialog
+RUN apt-get update && apt-get install -y locales apt-utils gnupg sudo wget jq && rm -rf /var/lib/apt/lists/*
 
-RUN apk add --no-cache python3
-RUN apk add --virtual dev --no-cache python3-dev build-base libffi-dev openssl-dev \
-    && pip3 install --no-cache-dir ansible==2.9.2 \
-    && apk del dev
-
-# Paramiko gives issues, so for now use native ssh
-RUN apk add --no-cache openssh
+RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /etc/apt/sources.list.d/ansible.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+RUN apt-get update && apt-get install -y ansible && rm -rf /var/lib/apt/lists/*
 
 ENV EDITOR=/usr/bin/nano
 ADD src /
