@@ -1,2 +1,4 @@
 #!/bin/sh
+ANSIBLE_ROLES_PATH=${ANSIBLE_ROLES_PATH:-/workdir/roles}
+EXTRA_DOCKER_OPTS="-e $ANSIBLE_ROLES_PATH $EXTRA_DOCKER_OPTS"
 $(dirname "$0")/ansible-container ansible-galaxy "$@"
