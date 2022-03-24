@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:bullseye-slim
 
 RUN apt-get update && apt-get install -y locales apt-utils gnupg sudo wget jq dialog && rm -rf /var/lib/apt/lists/*
 
