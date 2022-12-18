@@ -1,8 +1,8 @@
 #!/bin/bash
 set -eu
 
-versions="$(wget -q https://registry.hub.docker.com/v1/repositories/bertbaron/ansible/tags -O - \
-            | jq -r '.[] | .name' \
+versions="$(wget -q 'https://registry.hub.docker.com/v2/repositories/bertbaron/ansible/tags?page_size=1024' -O - \
+            | jq -r '.results[].name' \
             | grep -E '^[0-9]' \
             | sort -rV \
             | awk '{ print NR, $1 }' \
